@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class ClientModel {
-  final int id;
+  final String id;
   final String name;
   final String cpf;  
   final String rg;
@@ -33,7 +33,8 @@ class ClientModel {
 
   factory ClientModel.fromMap(Map<String, dynamic> map) {
     return ClientModel(
-      id: int.tryParse(map['id']?.toString() ?? '') ?? 0,
+      // id: int.tryParse(map['id']?.toString() ?? '') ?? 0,
+      id: map['id']?.toString() ?? '',
       name: map['nome'] ?? '',
       cpf: map['cpf'] ?? '',
       rg: map['rg'] ?? '',

@@ -65,7 +65,7 @@ class ClientViewmodel {
     }
   }
 
-  Future<void> deleteEntity(int id, BuildContext context) async {
+  Future<void> deleteEntity(String id, BuildContext context) async {
     final isDelete = await showDialog<bool>(
       context: context, 
       builder: (_) => const ConfirmDialog(

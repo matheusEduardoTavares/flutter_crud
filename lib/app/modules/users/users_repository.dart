@@ -20,7 +20,7 @@ class UserRepository {
     return (getUsers.data as List).map((e) => UserModel.fromMap(e)).toList();
   }  
 
-  Future<void> deleteUser(int id) async {
+  Future<void> deleteUser(String id) async {
     await _restClient.delete(
       '${BackendEndpointsDefinition.users}/$id'
     );

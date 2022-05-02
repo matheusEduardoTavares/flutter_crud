@@ -20,7 +20,7 @@ class ProductRepository {
     return (getProducts.data as List).map((e) => ProductModel.fromMap(e)).toList();
   }  
 
-  Future<void> deleteProduct(int id) async {
+  Future<void> deleteProduct(String id) async {
     await _restClient.delete(
       '${BackendEndpointsDefinition.products}/$id'
     );

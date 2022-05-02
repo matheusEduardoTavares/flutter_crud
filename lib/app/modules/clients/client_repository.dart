@@ -20,7 +20,7 @@ class ClientRepository {
     return (getClients.data as List).map((e) => ClientModel.fromMap(e)).toList();
   }  
 
-  Future<void> deleteClient(int id) async {
+  Future<void> deleteClient(String id) async {
     await _restClient.delete(
       '${BackendEndpointsDefinition.clients}/$id'
     );
