@@ -9,8 +9,13 @@ class UserRepository {
 
   final RestClient _restClient;
 
-  Future<List<UserModel>> loadUsers() async {
-    final getUsers = await _restClient.get(BackendEndpointsDefinition.users);
+  Future<List<UserModel>> loadUsers(bool isEncrypt) async {
+    final getUsers = await _restClient.get(
+      BackendEndpointsDefinition.users,
+      queryParameters: {
+        'isEncrypt': isEncrypt,
+      }
+    );
 
     return (getUsers.data as List).map((e) => UserModel.fromMap(e)).toList();
   }  

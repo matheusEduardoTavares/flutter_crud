@@ -55,7 +55,7 @@ class _UpsertPageState extends State<UpsertPage> {
                       onSaved: (value) {
                         _mapData[e.key] = value;
                       },
-                      initialValue: _mapData[e.key],
+                      initialValue: _mapData[e.key]?.toString(),
                       validator: e.validators?.isNotEmpty == true ? Validatorless.multiple([
                         ...e.validators!,
                       ]) : null,

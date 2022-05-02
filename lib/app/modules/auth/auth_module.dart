@@ -2,6 +2,7 @@ import 'package:flutter_crud/app/core/utilities/modules_definition.dart';
 import 'package:flutter_crud/app/modules/auth/auth_page.dart';
 import 'package:flutter_crud/app/modules/auth/auth_viewmodel.dart';
 import 'package:flutter_crud/app/modules/login/login_module.dart';
+import 'package:flutter_crud/app/modules/products/upsert_product_module.dart';
 import 'package:flutter_crud/app/modules/users/upsert_user_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -27,6 +28,10 @@ class AuthModule extends Module {
     ModuleRoute(
       ModulesDefinition.user, 
       module: UserModule(),
+    ),
+    ModuleRoute(
+      ModulesDefinition.products, 
+      module: ProductModule(),
     ),
   ];
 }

@@ -22,6 +22,8 @@ class UserViewmodel {
   // Stream<List<ClientModel>> get clientsOut => _clientsController.stream;
   // Sink<List<ClientModel>> get clientsIn => _clientsController.sink;
 
+  var isEncrypt = false;
+
   final _userLoadingController = StreamController<bool>();
   Stream<bool> get isLoadingOut => _userLoadingController.stream;
   Sink<bool> get isLoadingIn => _userLoadingController.sink;
@@ -112,7 +114,10 @@ class UserViewmodel {
   Future<void> loadData() async {
     _userLoadingController.add(true);
 
-    final users = await _repository.loadUsers();
+    final users = await _repository.loadUsers(
+      isEncrypt,
+    );
+    
     usersIn.add(users);
 
     _userLoadingController.add(false);

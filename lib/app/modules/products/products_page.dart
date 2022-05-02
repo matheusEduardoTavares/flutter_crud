@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud/app/core/utilities/backend_endpoints_definition.dart';
-import 'package:flutter_crud/app/core/utilities/modules_definition.dart';
 import 'package:flutter_crud/app/core/widgets/list_table/list_table.dart';
 import 'package:flutter_crud/app/models/list_table/list_table_definition.dart';
-import 'package:flutter_crud/app/models/user_model.dart';
-import 'package:flutter_crud/app/modules/users/users_viewmodel.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_crud/app/models/product_model.dart';
+import 'package:flutter_crud/app/modules/products/products_viewmodel.dart';
 
-class UserPage extends StatefulWidget {
-  const UserPage({ 
+class ProductPage extends StatefulWidget {
+  const ProductPage({ 
     Key? key ,
-    required UserViewmodel viewmodel,
+    required ProductViewmodel viewmodel,
   }) : 
   _viewmodel = viewmodel,
   super(key: key);
 
-  final UserViewmodel _viewmodel;
+  final ProductViewmodel _viewmodel;
 
   @override
-  State<UserPage> createState() => _UserPageState();
+  State<ProductPage> createState() => _ProductPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _ProductPageState extends State<ProductPage> {
   @override
   void initState() {
     super.initState();
@@ -33,7 +31,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Listagem de usuários'),
+        title: const Text('Listagem de produtos'),
         actions: [
           IconButton(
             icon: Icon(
@@ -51,21 +49,21 @@ class _UserPageState extends State<UserPage> {
         onPressed: () => widget._viewmodel.createEntity(context),
         child: const Icon(Icons.add),
       ),
-      body: StreamBuilder<List<UserModel>>(
+      body: StreamBuilder<List<ProductModel>>(
         initialData: const [],
-        stream: widget._viewmodel.usersOut,
+        stream: widget._viewmodel.productsOut,
         builder: (_, snapshot) => Column(
           children: [
             Expanded(
               child: snapshot.data?.isEmpty ?? true ? const Center(
-                child: Text('Não há nenhum usuário'),
+                child: Text('Não há nenhum produto'),
               ) : ListTable(
                 tableDefinition: ListTableDefinition(
-                  endpoint: BackendEndpointsDefinition.users,
+                  endpoint: BackendEndpointsDefinition.products,
                   items: snapshot.data!.map((e) => e.toMap()).toList(),
                   entityData: snapshot.data!.isNotEmpty ? 
                     snapshot.data![0].toMap() : {},
-                  orderData: widget._viewmodel.orderUser,
+                  orderData: widget._viewmodel.orderProduct,
                   deleteEntity: widget._viewmodel.deleteEntity,
                   updateEntity: widget._viewmodel.updateEntity,
                 ),
@@ -75,10 +73,8 @@ class _UserPageState extends State<UserPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    Modular.to.navigate(ModulesDefinition.products);
-                  }, 
-                  child: const Text('Produtos')
+                  onPressed: () {}, 
+                  child: const Text('Usuários')
                 ),
                 ElevatedButton(
                   onPressed: () {}, 
