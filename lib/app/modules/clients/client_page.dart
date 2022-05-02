@@ -3,25 +3,25 @@ import 'package:flutter_crud/app/core/utilities/backend_endpoints_definition.dar
 import 'package:flutter_crud/app/core/utilities/modules_definition.dart';
 import 'package:flutter_crud/app/core/widgets/list_table/list_table.dart';
 import 'package:flutter_crud/app/models/list_table/list_table_definition.dart';
-import 'package:flutter_crud/app/models/user_model.dart';
-import 'package:flutter_crud/app/modules/users/users_viewmodel.dart';
+import 'package:flutter_crud/app/models/client_model.dart';
+import 'package:flutter_crud/app/modules/clients/client_viewmodel.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class UserPage extends StatefulWidget {
-  const UserPage({ 
+class ClientPage extends StatefulWidget {
+  const ClientPage({ 
     Key? key ,
-    required UserViewmodel viewmodel,
+    required ClientViewmodel viewmodel,
   }) : 
   _viewmodel = viewmodel,
   super(key: key);
 
-  final UserViewmodel _viewmodel;
+  final ClientViewmodel _viewmodel;
 
   @override
-  State<UserPage> createState() => _UserPageState();
+  State<ClientPage> createState() => _ClientPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _ClientPageState extends State<ClientPage> {
   @override
   void initState() {
     super.initState();
@@ -33,7 +33,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Listagem de usuários'),
+        title: const Text('Listagem de clientes'),
         actions: [
           IconButton(
             icon: Icon(
@@ -51,21 +51,21 @@ class _UserPageState extends State<UserPage> {
         onPressed: () => widget._viewmodel.createEntity(context),
         child: const Icon(Icons.add),
       ),
-      body: StreamBuilder<List<UserModel>>(
+      body: StreamBuilder<List<ClientModel>>(
         initialData: const [],
-        stream: widget._viewmodel.usersOut,
+        stream: widget._viewmodel.clientsOut,
         builder: (_, snapshot) => Column(
           children: [
             Expanded(
               child: snapshot.data?.isEmpty ?? true ? const Center(
-                child: Text('Não há nenhum usuário'),
+                child: Text('Não há nenhum cliente'),
               ) : ListTable(
                 tableDefinition: ListTableDefinition(
-                  endpoint: BackendEndpointsDefinition.users,
+                  endpoint: BackendEndpointsDefinition.clients,
                   items: snapshot.data!.map((e) => e.toMap()).toList(),
                   entityData: snapshot.data!.isNotEmpty ? 
                     snapshot.data![0].toMap() : {},
-                  orderData: widget._viewmodel.orderUser,
+                  orderData: widget._viewmodel.orderClient,
                   deleteEntity: widget._viewmodel.deleteEntity,
                   updateEntity: widget._viewmodel.updateEntity,
                 ),
@@ -76,15 +76,15 @@ class _UserPageState extends State<UserPage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Modular.to.navigate(ModulesDefinition.products);
+                    Modular.to.navigate(ModulesDefinition.user);
                   }, 
-                  child: const Text('Produtos')
+                  child: const Text('Usuários')
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Modular.to.navigate(ModulesDefinition.clients);
+                    Modular.to.navigate(ModulesDefinition.products);
                   }, 
-                  child: const Text('Clientes')
+                  child: const Text('Produtos')
                 ),
               ],
             ),

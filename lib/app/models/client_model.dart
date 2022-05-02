@@ -33,7 +33,7 @@ class ClientModel {
 
   factory ClientModel.fromMap(Map<String, dynamic> map) {
     return ClientModel(
-      id: int.tryParse(map['id'] ?? '') ?? 0,
+      id: int.tryParse(map['id']?.toString() ?? '') ?? 0,
       name: map['nome'] ?? '',
       cpf: map['cpf'] ?? '',
       rg: map['rg'] ?? '',

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud/app/core/utilities/backend_endpoints_definition.dart';
+import 'package:flutter_crud/app/core/utilities/modules_definition.dart';
 import 'package:flutter_crud/app/core/widgets/list_table/list_table.dart';
 import 'package:flutter_crud/app/models/list_table/list_table_definition.dart';
 import 'package:flutter_crud/app/models/product_model.dart';
 import 'package:flutter_crud/app/modules/products/products_viewmodel.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({ 
@@ -73,11 +75,15 @@ class _ProductPageState extends State<ProductPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  onPressed: () {}, 
+                  onPressed: () {
+                    Modular.to.navigate(ModulesDefinition.user);
+                  }, 
                   child: const Text('Usuários')
                 ),
                 ElevatedButton(
-                  onPressed: () {}, 
+                  onPressed: () {
+                    Modular.to.navigate(ModulesDefinition.clients);
+                  }, 
                   child: const Text('Clientes')
                 ),
               ],
