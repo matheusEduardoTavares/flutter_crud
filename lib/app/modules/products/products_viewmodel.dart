@@ -68,7 +68,9 @@ class ProductViewmodel {
   Future<void> deleteEntity(int id, BuildContext context) async {
     final isDelete = await showDialog<bool>(
       context: context, 
-      builder: (_) => const ConfirmDialog(),
+      builder: (_) => const ConfirmDialog(
+        entity: 'produto',
+      ),
     );
 
     if (isDelete != null && isDelete) {
