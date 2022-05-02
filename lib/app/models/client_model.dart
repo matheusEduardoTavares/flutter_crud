@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class Client {
+class ClientModel {
   final int id;
   final String name;
   final String cpf;  
@@ -9,7 +9,7 @@ class Client {
   final DateTime? updatedAt;  
   final DateTime? deletedAt;  
 
-  Client({
+  ClientModel({
     required this.id,
     required this.name,
     required this.cpf,
@@ -31,8 +31,8 @@ class Client {
     };
   }
 
-  factory Client.fromMap(Map<String, dynamic> map) {
-    return Client(
+  factory ClientModel.fromMap(Map<String, dynamic> map) {
+    return ClientModel(
       id: int.tryParse(map['id'] ?? '') ?? 0,
       name: map['nome'] ?? '',
       cpf: map['cpf'] ?? '',
@@ -45,5 +45,5 @@ class Client {
 
   String toJson() => json.encode(toMap());
 
-  factory Client.fromJson(String source) => Client.fromMap(json.decode(source));
+  factory ClientModel.fromJson(String source) => ClientModel.fromMap(json.decode(source));
 }

@@ -33,7 +33,7 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      id: int.tryParse(map['id'] ?? '') ?? 0,
+      id: int.tryParse(map['id']?.toString() ?? '') ?? 0,
       name: map['nome'] ?? '',
       login: map['login'] ?? '',
       password: map['senha'] ?? '',
@@ -46,4 +46,29 @@ class UserModel {
   String toJson() => json.encode(toMap());
 
   factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source));
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+  
+    return other is UserModel &&
+      other.id == id &&
+      other.name == name &&
+      other.login == login &&
+      other.password == password &&
+      other.createdAt == createdAt &&
+      other.updatedAt == updatedAt &&
+      other.deletedAt == deletedAt;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+      name.hashCode ^
+      login.hashCode ^
+      password.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      deletedAt.hashCode;
+  }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_crud/app/models/create_page/create_page_details_model.dart';
+import 'package:flutter_crud/app/models/upsert_page/upsert_page_details_model.dart';
 import 'package:validatorless/validatorless.dart';
 
 class UpsertPage extends StatefulWidget {

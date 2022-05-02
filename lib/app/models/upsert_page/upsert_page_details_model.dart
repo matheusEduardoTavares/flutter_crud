@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_crud/app/models/create_page/create_page_field_model.dart';
+import 'package:flutter_crud/app/models/upsert_page/upsert_page_field_model.dart';
 
 class UpsertPageDetails {
   final List<UpsertPageField> upsertPageField;
