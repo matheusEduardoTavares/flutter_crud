@@ -37,7 +37,7 @@ class _ListTableState extends State<ListTable> {
         ).toList(),
         rows: widget.tableDefinition.items.map(
           (map) => DataRow(
-            onLongPress: () => widget.tableDefinition.deleteEntity(map['id'], context),
+            onLongPress: () => widget.tableDefinition.deleteEntity(map['_id'], context),
             onSelectChanged: (_) {
               widget.tableDefinition.updateEntity(map, context);
             },

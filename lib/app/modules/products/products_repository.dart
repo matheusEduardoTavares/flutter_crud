@@ -10,14 +10,20 @@ class ProductRepository {
   final RestClient _restClient;
 
   Future<List<ProductModel>> loadProducts(bool isEncrypt) async {
-    final getProducts = await _restClient.get(
-      BackendEndpointsDefinition.products,
-      queryParameters: {
-        'isEncrypt': isEncrypt,
-      }
-    );
+    try {
+      final getProducts = await _restClient.get(
+        BackendEndpointsDefinition.products,
+        queryParameters: {
+          'isEncrypt': isEncrypt,
+        }
+      );
+      
+      return (getProducts.data as List).map((e) => ProductModel.fromMap(e)).toList();
+    } catch (e) {
+      print(e);
+    }
 
-    return (getProducts.data as List).map((e) => ProductModel.fromMap(e)).toList();
+    return [];
   }  
 
   Future<void> deleteProduct(String id) async {
