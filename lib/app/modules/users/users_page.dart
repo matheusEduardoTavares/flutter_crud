@@ -42,6 +42,7 @@ class _UserPageState extends State<UserPage> {
             onPressed: () {
               setState(() {
                 widget._viewmodel.isEncrypt = !widget._viewmodel.isEncrypt;
+                widget._viewmodel.loadData();
               });
             },
           ),

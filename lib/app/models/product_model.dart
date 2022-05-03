@@ -23,7 +23,7 @@ class ProductModel {
 
   Map<String, dynamic> toMap() {
     return {
-      '_id': id,
+      'id': id,
       'nome': name,
       'estoque': stock,
       'preco_custo': costPrice,
@@ -36,8 +36,8 @@ class ProductModel {
 
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
-      // id: int.tryParse(map['_id']?.toString() ?? '') ?? 0,
-      id: map['_id']?.toString() ?? '',
+      // id: int.tryParse(map['id']?.toString() ?? '') ?? 0,
+      id: map['id']?.toString() ?? '',
       name: map['nome'] ?? '',
       stock: double.tryParse(map['estoque']?.toString() ?? '') ?? 0.0,
       costPrice: double.tryParse(map['preco_custo']?.toString() ?? '') ?? 0.0,

@@ -42,6 +42,7 @@ class _ProductPageState extends State<ProductPage> {
             onPressed: () {
               setState(() {
                 widget._viewmodel.isEncrypt = !widget._viewmodel.isEncrypt;
+                widget._viewmodel.loadData();
               });
             },
           ),

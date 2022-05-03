@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { UpsertProductDTO } from './dtos/upsert_product.dto';
 import { ProductsInterface } from './interfaces/products.interface';
@@ -23,8 +24,12 @@ export class ProductsController {
   }
 
   @Get()
-  async consultarProducts(): Promise<Array<ProductsInterface>> {
-    return await this.productsService.consultarTodasProducts();
+  async consultarProducts(
+    @Query('isEncrypt') isEncrypt: boolean,
+  ): Promise<Array<any>> {
+    return await this.productsService.consultarTodasProducts(
+      isEncrypt || false,
+    );
   }
 
   @Get('/:product')

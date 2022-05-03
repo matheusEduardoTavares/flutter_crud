@@ -42,6 +42,7 @@ class _ClientPageState extends State<ClientPage> {
             onPressed: () {
               setState(() {
                 widget._viewmodel.isEncrypt = !widget._viewmodel.isEncrypt;
+                widget._viewmodel.loadData();
               });
             },
           ),
